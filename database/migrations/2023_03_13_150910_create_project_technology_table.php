@@ -36,6 +36,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Qui non bisgogna togliere la relazione perchè buttando giù la colonna non si rompe 
         Schema::dropIfExists('project_technology');
     }
 };
