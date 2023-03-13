@@ -30,6 +30,7 @@
         <th scope="col">Title</th>
         <th scope="col">Slug</th>
         <th scope="col">Type</th>
+        <th scope="col">Technology</th>
         <th scope="col">Status</th>
         <th scope="col">Created at</th>
         <th scope="col">Updated at</th>
@@ -52,6 +53,15 @@
               <h3>Undefined</h3>
               @endif
             </td>
+
+            <td>
+              @forelse($project->technologies as $technology)
+                <span class="badge rounded-pill text-bg-{{$technology->color}}">{{$technology->label}}</span>
+              @empty
+                <p>---</p>
+              @endforelse
+            </td>
+
             <td>
               <form method="POST" action="{{route('admin.projects.toggle', $project->id)}}">
                 @method('PATCH')
