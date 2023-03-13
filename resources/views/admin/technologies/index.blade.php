@@ -25,7 +25,7 @@
         <tr>
             <th scope="row">{{$technology->id }}</th>
             <td>{{$technology->label }}</td>
-            {{-- AL COLOR BACKGROUND IF arriva il colore metti  -------------CANCELLA POI--------------------}}
+            {{-- Style backgroud color è la scelta giusta , rimane con la classe come esempio con un seeder di classi bootstrap --}}
             <td class="bg-{{$technology->color}}" style="background-color : {{$technology->color}}"></td>
             <td class="d-flex justify-content-end">
                 {{-- BOTTON TO technology EDIT --}}

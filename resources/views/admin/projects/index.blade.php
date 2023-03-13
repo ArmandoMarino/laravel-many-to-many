@@ -58,9 +58,10 @@
             </td>
 
             {{-- TECHNOLOGIES --}}
+            {{-- Style backgroud color è la scelta giusta , rimane con la classe come esempio con un seeder di classi bootstrap --}}
             <td>
               @forelse($project->technologies as $technology)
-                <span class="badge rounded-pill text-bg-{{$technology->color}}">{{$technology->label}}</span>
+                <span style="background-color: {{$technology->color}} " class="badge rounded-pill text-bg-{{$technology->color}}">{{$technology->label}}</span>
               @empty
                 <p>---</p>
               @endforelse
