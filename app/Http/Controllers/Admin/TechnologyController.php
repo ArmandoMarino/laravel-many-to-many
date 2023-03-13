@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TechnologyController extends Controller
 {
@@ -33,7 +34,7 @@ class TechnologyController extends Controller
     {
         $request->validate([
             'label' => 'required|string|unique:types|max:15',
-            'color' => 'nullable|string|size:25'
+            'color' => 'nullable|string|size:7'
         ], [
             'label.required' => 'Technology field is required',
             'label.max' => 'The type can have maximum of 15 characters',

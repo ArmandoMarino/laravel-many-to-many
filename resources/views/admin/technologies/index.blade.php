@@ -26,7 +26,7 @@
             <th scope="row">{{$technology->id }}</th>
             <td>{{$technology->label }}</td>
             {{-- AL COLOR BACKGROUND IF arriva il colore metti  -------------CANCELLA POI--------------------}}
-            <td @if ($technology->color) class="bg-{{$technology->color}}" @else style="background-color : {{$technology->color}}" @endif></td>
+            <td class="bg-{{$technology->color}}" style="background-color : {{$technology->color}}"></td>
             <td class="d-flex">
                 {{-- BOTTON TO technology EDIT --}}
                 <a class="btn btn-warning mx-2" href="{{route('admin.technologies.edit', $technology->id)}}">

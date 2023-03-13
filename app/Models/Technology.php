@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Technology extends Model
 {
     use HasFactory;
+    protected $fillable = ['label', 'color'];
 
     // Assegno la relazione molti a molti con i Projects al prurale
     public function projects()

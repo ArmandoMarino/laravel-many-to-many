@@ -23,7 +23,7 @@
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="color" class="form-label">Color</label>
-                <input technology="color" name="color" class="form-control" id="color" value="{{ old('color', $technology->color) }}">
+                <input type="color" name="color" class="form-control" id="color" value="{{ old('color', $technology->color) }}">
             </div>
         </div>
     </div>
