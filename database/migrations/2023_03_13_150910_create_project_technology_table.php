@@ -26,7 +26,8 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->foreignId('technology_id')->constrained()->onDelete('cascade');
 
-            $table->timestamps();
+            // Eventualmente se vuoi utilizzare i tymestamps devo andare nel model della Technology e aggiungere ->withTimestamps
+            // $table->timestamps();
         });
     }
 

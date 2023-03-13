@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('label', 15)->unique();
             $table->char('color', 7)->default('#ffffff');
-            // Eventualmente se vuoi utilizzare i tymestamps devo andare nel model della Technology e aggiungere ->withTimestamps
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
