@@ -10,6 +10,7 @@ use illuminate\Support\Str;
 
 // MODELS
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 
 // REQUEST for FORMS DATA
@@ -59,7 +60,10 @@ class ProjectController extends Controller
         //MODEL FOR FORM tutte in ordine alfabetico (sottinteso)
         $types = Type::orderBy('label')->get();
 
-        return view('admin.projects.create', compact('project', 'types'));
+        // Prendo le technologies dal DB
+        $technologies = Technology::select('id', 'label')->orderBy('id')->get();
+
+        return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     /**
