@@ -76,7 +76,7 @@ class TechnologyController extends Controller
     {
         $request->validate([
             'label' => ['required', 'string', Rule::unique('technologies')->ignore($technology->id), 'max:15'],
-            'color' => 'nullable|string|size:25'
+            'color' => 'nullable|string|size:7'
         ], [
             'label.required' => 'Type select is required',
             'label.max' => 'The type can have maximum of 15 characters',

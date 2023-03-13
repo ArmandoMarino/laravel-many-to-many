@@ -10,7 +10,7 @@
 </header>
 
 {{-- TABLE --}}
-<table class="table">
+<table class="table text-center">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -27,7 +27,7 @@
             <td>{{$technology->label }}</td>
             {{-- AL COLOR BACKGROUND IF arriva il colore metti  -------------CANCELLA POI--------------------}}
             <td class="bg-{{$technology->color}}" style="background-color : {{$technology->color}}"></td>
-            <td class="d-flex">
+            <td class="d-flex justify-content-end">
                 {{-- BOTTON TO technology EDIT --}}
                 <a class="btn btn-warning mx-2" href="{{route('admin.technologies.edit', $technology->id)}}">
                   <i class=" fa-solid fa-pencil"></i>
