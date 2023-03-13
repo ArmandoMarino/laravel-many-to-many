@@ -81,17 +81,41 @@
 
         </div>
 
-
     </div>
 
-    <div class="d-flex justify-content-between">
+    {{-- ------------------TECHNOLOGIES CHECKS -----------------}}
+    {{-- l'id dell'input e for sono dimanici cosi da non fare incocciare niente oppure usare $loop->iteration o $loop->iteration --}}
+    {{-- Nel name mandiamo il name che conterrà più name del foreach quindi mandiamo un array technologies[] --}}
+    
+    {{-- Nel @if del checked  se nell'array esiste mandami il $technology->id altrimenti l'ultimo dato avuto : old('technologies', $project_technologies)
+    dove $project_technologies è assegnato nalla edit del controller --}}
+    <div class="col-12">
+        <p><strong>Technlogies</strong></p>
+        @foreach ($technologies as $technology)
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tag-{{$technology->label}}" value="{{$technology->id}}"
+             name="technologies[]" @if(in_array($technology->id, old('technologies', $project_technologies))) checked @endif>
+
+            <label class="form-check-label" for="tag-{{$technology->label}}">
+                {{$technology->label}}
+            </label>
+          </div> 
+        @endforeach
+        
+        @error('technologies')
+        <small class="text-danger">{{$message}}</small>
+        @enderror
+        
+    </div>
+    
+    <div class="d-flex align-items-center justify-content-end my-3">
         {{-- CHECKBOX PUBLISH --}}
-        <div class="form-check form-switch">
+        <div class="form-check form-switch me-3">
             <input name="is_published" class="form-check-input" type="checkbox" role="switch" id="is_published" 
             {{-- L'IF lo facciamo sul checked dentro l'input per l'old --}}
             @if (old('is_published', $project->is_published)) checked @endif>
 
-            <label class="form-check-label" for="is_published">Published</label>
+            <label class="form-check-label" for="is_published">Publish</label>
         </div>
 
         <div>

@@ -77,7 +77,8 @@ class ProjectController extends Controller
                 'description' => 'required|string',
                 'image' => 'nullable|image|mimes:jpeg,jpg,png',
                 // Controllo se esiste quell'id sulla tabella Types  (esiste:tabella,colonna)
-                'type_id' => 'nullable|exists:types,id'
+                'type_id' => 'nullable|exists:types,id',
+                'technologies' => 'nullable|exists:technologies,id'
             ],
             [
                 // ERRORI
@@ -88,7 +89,8 @@ class ProjectController extends Controller
                 'description.required' => 'Description field it cannot be empty',
                 'image.image' => 'Image is not Valid.',
                 'image.mimes' => 'Accepted extensions : jpeg,jpg,png.',
-                'type_id' => 'Invalid Type'
+                'type_id' => 'Invalid Type',
+                'technologies' => 'Invalid Technology'
             ]
         );
 
@@ -112,6 +114,9 @@ class ProjectController extends Controller
 
         $project->save();
 
+        // Releziono il project con i Technologies se esistono/arrivano in data  con attach!
+        if (Arr::exists($data, 'technologies')) $project->technologies()->attach($data['technologies']);
+
         return to_route('admin.projects.show', $project->id)->with('type', 'success')->with('New project created successfully');
     }
 
@@ -131,7 +136,13 @@ class ProjectController extends Controller
         //MODEL FOR FORM tutte in ordine alfabetico (sottinteso)
         $types = Type::orderBy('label')->get();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        // Prendo le technologies dal DB
+        $technologies = Technology::select('id', 'label')->orderBy('id')->get();
+
+        // Assegniamo a $project_technologies da una collection ad un array di id, e lo passiamo giu
+        $project_technologies = $project->technologies->pluck('id')->toArray();
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies', 'project_technologies'));
     }
 
     /**
@@ -178,6 +189,12 @@ class ProjectController extends Controller
 
         $project->update($data);
 
+        // Releziono il project con i Technologies se esistono/arrivano in data ma con sync !
+        if (Arr::exists($data, 'technologies')) $project->technologies()->sync($data['technologies']);
+        // Altrimenti se te li conto e ne hai (relazione tra $project->technologies) allora con il METODO ->technologies() le elimini ->detach();
+        else if (count($project->technologies)) $project->technologies()->detach();
+
+
         return to_route('admin.projects.show', $project->id)->with('type', 'success')->with('message', "Project : $project->title updated successfully.");
     }
 
@@ -188,6 +205,9 @@ class ProjectController extends Controller
     {
         // SE esisiste un'immagine del project la elimino dallo storage
         if ($project->image) Storage::delete($project->image);
+
+        // Se te li conto e ne hai (relazione tra $project->technologies) allora con il METODO ->technologies() le elimini ->detach();
+        if (count($project->technologies)) $project->technologies()->detach();
 
         $project->delete();
         return to_route('admin.projects.index')->with('type', 'success')->with('message', "Project : $project->title deleted successfully.");
