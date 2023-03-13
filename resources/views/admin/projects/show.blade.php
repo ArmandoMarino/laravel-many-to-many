@@ -20,6 +20,15 @@
             <p>Updated at :  <i><time>{{$project->updated_at}} </time></i></p>
             <p>Status : <strong>{{ $project->is_published ? 'Published' : 'Draft'}}</strong></p>
             <p>Type : {{ $project->type?->label ? $project->type->label : 'Undefined'}}</p>
+            <p>Technlogies :  
+                @forelse ($project->technologies as $technology) 
+                 {{$technology->label}}  
+                 @if (!$loop->last),
+                 @else. 
+                 @endif 
+                 @empty Undefined  
+                 @endforelse 
+            </p>
         </div>
     </div>
 

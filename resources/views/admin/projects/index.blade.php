@@ -44,8 +44,11 @@
             <th scope="row">{{$project->id }}</th>
             <td>{{$project->title }}</td>
             <td>{{$project->slug }}</td>
+
             {{--! Il ? NULLSAFE OPERATOR che impesice la rottura in caso di dato NULL dal DB --}}
             {{-- {{$project->type?->label}} --}}
+
+            {{-- TYPE --}}
             <td>
               @if ($project->type)
               <span style="background-color : {{$project->type->color}}" class="badge">{{$project->type?->label}}</span>
@@ -54,6 +57,7 @@
               @endif
             </td>
 
+            {{-- TECHNOLOGIES --}}
             <td>
               @forelse($project->technologies as $technology)
                 <span class="badge rounded-pill text-bg-{{$technology->color}}">{{$technology->label}}</span>

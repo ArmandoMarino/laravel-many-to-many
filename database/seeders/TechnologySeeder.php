@@ -15,14 +15,14 @@ class TechnologySeeder extends Seeder
     {
         $technologies = [
             ['label' => 'HTML', 'color' => 'primary'],
-            ['label' => 'CSS', 'color' => 'secondary'],
+            ['label' => 'CSS', 'color' => 'primary'],
             ['label' => 'ES6', 'color' => 'success'],
             ['label' => 'Bootstrap', 'color' => 'danger'],
             ['label' => 'Vue', 'color' => 'warning'],
             ['label' => 'SASS', 'color' => 'info'],
-            ['label' => 'PHP', 'color' => 'light'],
-            ['label' => 'SQL', 'color' => 'primary-emphasis'],
-            ['label' => 'Laravel', 'color' => 'danger-emphasis'],
+            ['label' => 'PHP', 'color' => 'secondary'],
+            ['label' => 'SQL', 'color' => 'secondary'],
+            ['label' => 'Laravel', 'color' => 'dark'],
 
         ];
 

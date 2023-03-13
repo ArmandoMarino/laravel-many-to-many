@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 // MODELS
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,6 +22,9 @@ class ProjectSeeder extends Seeder
         // Prende l'id dal controller type seleziona  l'id e poi lo trsaforma in un array (di id)
         $type_ids = Type::select('id')->pluck('id')->toArray();
 
+
+        $technology_ids = Technology::select('id')->pluck('id')->toArray();
+
         for ($i = 0; $i < 20; $i++) {
             $project = new Project();
 
@@ -33,6 +37,16 @@ class ProjectSeeder extends Seeder
             $project->is_published = $faker->boolean();
 
             $project->save();
+
+
+            // Dopo aver salvato il Project nel DB genero a caso gli id relazionati con i projects
+            $project_technologies = [];
+
+            foreach ($technology_ids as $technology_id) {
+                if ($faker->boolean()) $project_technologies[] = $technology_id;
+            }
+
+            $project->technologies()->attach($project_technologies);
         }
     }
 }
