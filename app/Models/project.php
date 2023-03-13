@@ -16,4 +16,10 @@ class Project extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    //Assegno la relazione molti a molti con le Technologies al plurale
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
+    }
 }
