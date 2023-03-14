@@ -48,8 +48,14 @@ class User extends Authenticatable
     //     $this->attributes['password'] = bcrypt($value);
     // }
 
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
     public function userDetail()
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->hasOne(UserDetail::class, 'user_id');
     }
 }

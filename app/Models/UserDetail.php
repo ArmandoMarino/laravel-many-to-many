@@ -14,4 +14,10 @@ class UserDetail extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // FUnzione pubblica che restiruisce il nome intero interpolato
+    public function getFullName()
+    {
+        return "$this->first_name  $this->last_name";
+    }
 }

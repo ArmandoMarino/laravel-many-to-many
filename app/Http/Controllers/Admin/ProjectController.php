@@ -17,6 +17,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 // Arr function
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 // Storage function
 use Illuminate\Support\Facades\Storage;
 // FOR VALIDATION UNIQUE IN UPDATE RULE
@@ -114,6 +115,9 @@ class ProjectController extends Controller
         $data['is_published'] = Arr::exists($data, 'is_published');
 
         $project->fill($data);
+
+        // Assegno l'user loggato in quel momento
+        // $project->user_id = Auth::user()->id;
 
         $project->save();
 

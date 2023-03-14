@@ -94,7 +94,7 @@
         @foreach ($technologies as $technology)
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="tag-{{$technology->label}}" value="{{$technology->id}}"
-             name="technologies[]" @if(in_array($technology->id, old('technologies', $project_technologies))) checked @endif>
+             name="technologies[]" @if(in_array($technology->id, old('technologies', $project_technologies ?? []))) checked @endif>
 
             <label class="form-check-label" for="tag-{{$technology->label}}">
                 {{$technology->label}}
