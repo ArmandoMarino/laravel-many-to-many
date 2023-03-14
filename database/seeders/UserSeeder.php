@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = 'Armando';
         $user->email = 'scrivania.lavoro@gmail.com';
+        // Ho criptato la password qui non dobbiamo farlo con il mutator
         $user->password = bcrypt('123progetto');
         $user->save();
     }
