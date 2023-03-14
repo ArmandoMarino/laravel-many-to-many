@@ -19,11 +19,10 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->date('birthday')->nullable();
-
             $table->timestamps();
 
             // Assegno la relzione dove la foreign è user_id sulla colonna id della tabella users
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
